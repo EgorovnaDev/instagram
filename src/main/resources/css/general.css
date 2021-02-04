@@ -1,0 +1,14 @@
+@import url(bootstrap3.css);
+
+* {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.root {
+    -fx-background-color: #282a36;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #282a36;
+}

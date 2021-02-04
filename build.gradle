@@ -1,0 +1,91 @@
+import net.sf.launch4j.config.LanguageID
+
+import java.nio.charset.StandardCharsets
+
+plugins {
+    id 'java'
+    id 'edu.sc.seis.launch4j' version '2.4.8'
+}
+
+group 'su.egorovna'
+version '1.0'
+
+sourceCompatibility = JavaVersion.VERSION_15
+targetCompatibility = JavaVersion.VERSION_15
+
+compileJava.options.encoding = StandardCharsets.UTF_8
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'su.egorovna.instagram.InstagramFX'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+launch4j {
+    outfile = 'IBroadcaster.exe'
+    mainClassName = 'su.egorovna.instagram.InstagramFX'
+    copyConfigurable = []
+    fileDescription = 'Instagram Broadcaster'
+    copyright = 'Egorovna Gaming, Egorov Nikita Andreevich'
+    productName = 'Instagram Broadcaster'
+    companyName = 'Egorovna Gaming'
+    internalName = 'Instagram Broadcaster'
+    trademarks = 'Egorovna Gaming'
+    version = project.version
+    textVersion = project.version
+    language = LanguageID.RUSSIAN
+    icon = String.valueOf(projectDir) + '/icon.ico'
+    jar = '../libs/' + project.tasks.fatJar.getArchiveFileName().get()
+    bundledJrePath = 'runtime'
+    bundledJre64Bit = true
+    jvmOptions = ['--enable-preview']
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+    maven { url "https://dl.bintray.com/jerady/maven" }
+}
+
+dependencies {
+    // JARs
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Instagram Private Api
+    compile 'com.github.instagram4j:instagram4j:2.0.3'
+
+    // DataFX
+    compile 'com.github.guigarage.DataFX:datafx-core:master-SNAPSHOT'
+    compile('io.datafx:flow:8.0.1') {
+        exclude(group: 'io.datafx', module: 'core')
+    }
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
+    // VLC
+    compile 'uk.co.caprica:vlcj:4.7.0'
+    compile 'uk.co.caprica:vlcj-javafx:1.0.2'
+
+    // UI
+    compile 'org.controlsfx:controlsfx:11.0.3'
+    compile 'com.jfoenix:jfoenix:9.0.10'
+    compile 'de.jensd:fontawesomefx-commons:11.0'
+    compile 'de.jensd:fontawesomefx-materialdesignfont:1.7.22-11'
+    compile 'com.vdurmont:emoji-java:5.1.1'
+
+    // Unicode
+    compile 'org.apache.commons:commons-lang3:3.11'
+
+    // Logging
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+
+    // Tests
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}

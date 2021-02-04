@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER" spacing="5.0">
+        <MaterialDesignIconView fill="WHITE" glyphName="INSTAGRAM" size="128" />
+        <Label focusTraversable="false" styleClass="lg" text="Login to Instagram" />
+        <GridPane vgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT" size="36" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <VBox GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                <TextField fx:id="username" focusTraversable="false" maxHeight="1.7976931348623157E308" onAction="#onLogin" promptText="Username" VBox.vgrow="ALWAYS">
+                    <styleClass>
+                        <String fx:value="lg" />
+                        <String fx:value="first" />
+                    </styleClass>
+                </TextField>
+                <PasswordField fx:id="password" focusTraversable="false" maxHeight="1.7976931348623157E308" onAction="#onLogin" promptText="Password" VBox.vgrow="ALWAYS">
+                    <styleClass>
+                        <String fx:value="lg" />
+                        <String fx:value="last" />
+                    </styleClass>
+                </PasswordField>
+            </VBox>
+            <MaterialDesignIconView fill="WHITE" glyphName="LOCK" size="36" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="login" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogin" text="Login" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                <styleClass>
+                    <String fx:value="primary" />
+                    <String fx:value="lg" />
+                </styleClass>
+            </Button>
+        </GridPane>
+        <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+        </padding>
+        <styleClass>
+            <String fx:value="root" />
+            <String fx:value="primary" />
+        </styleClass>
+    </VBox>
+</StackPane>
