@@ -189,28 +189,34 @@ public class InstagramApi {
         return url;
     }
 
+    /**
+     * Выключение комментариев к трансляции
+     */
     public static void muteComment() {
-        LOG.debug("Запрет комментирования трансляции");
+        LOG.debug("Выключение комментариев к трансляции");
         try {
             LiveBroadcastMuteCommentRequest muteCommentRequest = new LiveBroadcastMuteCommentRequest(broadcastId);
             client.sendRequest(muteCommentRequest).join();
         } catch (Exception e) {
-            LOG.error("Ошибка запрета комментирования трансляции", e);
-        }
-    }
-
-    public static void unmuteComment() {
-        LOG.debug("Разрешение комментирования трансляции");
-        try {
-            LiveBroadcastUnmuteCommentRequest unmuteCommentRequest = new LiveBroadcastUnmuteCommentRequest(broadcastId);
-            client.sendRequest(unmuteCommentRequest).join();
-        } catch (Exception e) {
-            LOG.error("Ошибка разрешения комментирования трансляции", e);
+            LOG.error("Ошибка выключения комментариев к трансляции", e);
         }
     }
 
     /**
-     * Корректировка строки (Инстраграм отдаёт ссылку с юникод символами)
+     * Включение комментариев к трансляции
+     */
+    public static void unmuteComment() {
+        LOG.debug("Включение комментариев к трансляции");
+        try {
+            LiveBroadcastUnmuteCommentRequest unmuteCommentRequest = new LiveBroadcastUnmuteCommentRequest(broadcastId);
+            client.sendRequest(unmuteCommentRequest).join();
+        } catch (Exception e) {
+            LOG.error("Ошибка включения комментариев к трансляции", e);
+        }
+    }
+
+    /**
+     * Замена юникод кодов на анси символы (Инстраграм отдаёт ссылку с юникод символами)
      *
      * @param data строка с юникод символами
      * @return строка ASCII

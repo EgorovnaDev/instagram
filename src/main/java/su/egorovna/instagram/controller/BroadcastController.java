@@ -1,7 +1,5 @@
 package su.egorovna.instagram.controller;
 
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.ViewNode;
 import io.datafx.controller.flow.FlowException;
@@ -11,11 +9,8 @@ import io.datafx.controller.util.VetoException;
 import io.datafx.core.concurrent.ProcessChain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -25,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import su.egorovna.instagram.live.InstagramApi;
 
 import javax.annotation.PostConstruct;
+
+import static su.egorovna.instagram.ui.UiUtils.addClipboardButton;
 
 @ViewController(value = "/fxml/broadcast.fxml", title = "Instagram Live")
 public class BroadcastController extends Controller {
@@ -57,26 +54,6 @@ public class BroadcastController extends Controller {
         key.setText(InstagramApi.getBroadcastKey());
         addClipboardButton(url);
         addClipboardButton(key);
-    }
-
-    private void addClipboardButton(CustomTextField textField) {
-        MaterialDesignIconView iconView = new MaterialDesignIconView(MaterialDesignIcon.CLIPBOARD_TEXT, "24.0");
-        iconView.setCursor(Cursor.HAND);
-        iconView.setTranslateX(-5);
-        iconView.setOnMouseClicked(event -> {
-            ClipboardContent clipboardContent = new ClipboardContent();
-            clipboardContent.putString(textField.getText());
-            Clipboard clipboard = Clipboard.getSystemClipboard();
-            clipboard.setContent(clipboardContent);
-            textField.selectAll();
-            textField.requestFocus();
-        });
-        textField.setRight(iconView);
-        textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                textField.deselect();
-            }
-        });
     }
 
     @FXML

@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
-
 <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="root" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" spacing="5.0" styleClass="primary">
